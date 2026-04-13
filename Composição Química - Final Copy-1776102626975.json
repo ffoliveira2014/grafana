@@ -1,0 +1,6961 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 109,
+      "options": {
+        "code": {
+          "language": "html",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\r\nwidth:100%;\r\nheight:100%;\r\ndisplay:flex;\r\nalign-items:center;\r\njustify-content:center;\r\nbackground-color:#111217;\r\noverflow:hidden;\r\n\">\r\n\r\n<img src=\"https://zabbix.fagorederlan.com.br/public/img/custom/fagor.png\"\r\nstyle=\"\r\nmax-height:100%;\r\nmax-width:100%;\r\nobject-fit:contain;\r\n\">\r\n\r\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 2
+      },
+      "id": 49,
+      "options": {
+        "code": {
+          "language": "html",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\r\nwidth:100%;\r\nheight:100%;\r\ndisplay:flex;\r\nalign-items:center;\r\njustify-content:center;\r\nbackground-color:#111217;\r\nborder-radius:10px;\r\noverflow:hidden;\r\n\">\r\n\r\n<img src=\"https://zabbix.fagorederlan.com.br/public/img/custom/disa.png\"\r\nstyle=\"\r\nmax-width:100%;\r\nmax-height:100%;\r\nobject-fit:contain;\r\n\">\r\n\r\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 2
+      },
+      "id": 50,
+      "options": {
+        "code": {
+          "language": "html",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\r\nwidth:100%;\r\nheight:100%;\r\ndisplay:flex;\r\nalign-items:center;\r\njustify-content:center;\r\nbackground-color:#111217;\r\nborder-radius:10px;\r\noverflow:hidden;\r\n\">\r\n\r\n<img src=\"https://zabbix.fagorederlan.com.br/public/img/custom/bmd.png\"\r\nstyle=\"\r\nmax-width:100%;\r\nmax-height:100%;\r\nobject-fit:contain;\r\n\">\r\n\r\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 5
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    CONVERT(varchar(8), DATA_HORA, 3) + ' ' +\r\n    LEFT(CONVERT(varchar(8), DATA_HORA, 108),5)\r\n    + CHAR(10) +\r\n    CASE \r\n        WHEN EQUIPAMENTO = 'LAB' THEN 'SPECTROLAB'\r\n        WHEN EQUIPAMENTO = 'MAX' THEN 'SPECTROMAX'\r\n        ELSE EQUIPAMENTO\r\n    END AS [ÚLTIMA ANÁLISE]\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\nORDER BY DATA_HORA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "PRODUTO",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 3,
+        "y": 5
+      },
+      "id": 77,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    PRODUTO\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\nORDER BY SEQUENCIA DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 5,
+        "y": 5
+      },
+      "id": 83,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    MATERIAL\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\nORDER BY SEQUENCIA DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 1,
+        "x": 7,
+        "y": 5
+      },
+      "id": 36,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    CAST(PANELA AS varchar(20)) + CHAR(10) AS PANELA\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\nORDER BY SEQUENCIA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 1380
+              },
+              {
+                "color": "dark-green",
+                "value": 1385
+              },
+              {
+                "color": "dark-yellow",
+                "value": 1415
+              },
+              {
+                "color": "dark-red",
+                "value": 1421
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 8,
+        "y": 5
+      },
+      "id": 33,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 20
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    [TEMP. LIB. VAZAMENTO] AS Temperatura\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\nORDER BY DATA_HORA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "displayName": "LIGA",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 1.01
+              },
+              {
+                "color": "dark-red",
+                "value": 1.1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 10,
+        "y": 5
+      },
+      "id": 37,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 20
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    [CONSUMO LIGA] AS RENDIMENTO\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\nORDER BY SEQUENCIA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 5
+      },
+      "id": 47,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    CONVERT(varchar(8), DATA_HORA, 3) + ' ' +\r\n    LEFT(CONVERT(varchar(8), DATA_HORA, 108),5)\r\n    + CHAR(10) +\r\n    CASE \r\n        WHEN EQUIPAMENTO = 'LAB' THEN 'SPECTROLAB'\r\n        WHEN EQUIPAMENTO = 'MAX' THEN 'SPECTROMAX'\r\n        ELSE EQUIPAMENTO\r\n    END AS [ÚLTIMA ANÁLISE]\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\nORDER BY DATA_HORA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "PRODUTO",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-yellow",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 15,
+        "y": 5
+      },
+      "id": 80,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    PRODUTO\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\nORDER BY SEQUENCIA DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 17,
+        "y": 5
+      },
+      "id": 32,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    MATERIAL\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\nORDER BY SEQUENCIA DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 1,
+        "x": 19,
+        "y": 5
+      },
+      "id": 85,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^PANELA$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    CAST(PANELA AS varchar(20)) + CHAR(10) AS PANELA\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\nORDER BY SEQUENCIA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 1380
+              },
+              {
+                "color": "dark-green",
+                "value": 1385
+              },
+              {
+                "color": "dark-yellow",
+                "value": 1415
+              },
+              {
+                "color": "dark-red",
+                "value": 1421
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 20,
+        "y": 5
+      },
+      "id": 110,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 20
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    [TEMP. LIB. VAZAMENTO] AS Temperatura\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\nORDER BY DATA_HORA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "displayName": "LIGA",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 1.01
+              },
+              {
+                "color": "dark-red",
+                "value": 1.1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 22,
+        "y": 5
+      },
+      "id": 75,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 20
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT TOP 1\r\n    [CONSUMO LIGA] AS RENDIMENTO\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\nORDER BY SEQUENCIA DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 0,
+        "y": 8
+      },
+      "id": 66,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Mg' elemento,\nCAST(ROUND(Mg,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Mg BETWEEN Mg_MIN AND Mg_MAX THEN 'OK'\n WHEN Mg BETWEEN Mg_MIN - ((Mg_MAX-Mg_MIN)*0.1)\n            AND Mg_MAX + ((Mg_MAX-Mg_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 1,
+        "y": 8
+      },
+      "id": 65,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'C' elemento,\nCAST(ROUND(C,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN C BETWEEN C_MIN AND C_MAX THEN 'OK'\n WHEN C BETWEEN C_MIN - ((C_MAX-C_MIN)*0.1)\n           AND C_MAX + ((C_MAX-C_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 2,
+        "y": 8
+      },
+      "id": 73,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Cueq' elemento,\nCAST(ROUND(Cueq,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Cueq BETWEEN Cueq_MIN AND Cueq_MAX THEN 'OK'\n WHEN Cueq BETWEEN Cueq_MIN - ((Cueq_MAX-Cueq_MIN)*0.1)\n              AND Cueq_MAX + ((Cueq_MAX-Cueq_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 3,
+        "y": 8
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Si' elemento,\nCAST(ROUND(Si,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Si BETWEEN Si_MIN AND Si_MAX THEN 'OK'\n WHEN Si BETWEEN Si_MIN - ((Si_MAX-Si_MIN)*0.1)\n            AND Si_MAX + ((Si_MAX-Si_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 4,
+        "y": 8
+      },
+      "id": 59,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'P' elemento,\nCAST(ROUND(P,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN P BETWEEN P_MIN AND P_MAX THEN 'OK'\n WHEN P BETWEEN P_MIN - ((P_MAX-P_MIN)*0.1)\n           AND P_MAX + ((P_MAX-P_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 5,
+        "y": 8
+      },
+      "id": 62,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'S' elemento,\nCAST(ROUND(S,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN S BETWEEN S_MIN AND S_MAX THEN 'OK'\n WHEN S BETWEEN S_MIN - ((S_MAX-S_MIN)*0.1)\n           AND S_MAX + ((S_MAX-S_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 88,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\n  width: 100%;\n  height: 100%;\n  font-size: 24px;\n  font-weight: bold;\n  color: #d3d3d3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n\">\n  Mg (Magnésio)\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 12,
+        "y": 8
+      },
+      "id": 56,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Mg' elemento,\nCAST(ROUND(Mg,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Mg BETWEEN Mg_MIN AND Mg_MAX THEN 'OK'\n WHEN Mg BETWEEN Mg_MIN - ((Mg_MAX-Mg_MIN)*0.1)\n            AND Mg_MAX + ((Mg_MAX-Mg_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 13,
+        "y": 8
+      },
+      "id": 54,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'C' elemento,\nCAST(ROUND(C,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN C BETWEEN C_MIN AND C_MAX THEN 'OK'\n WHEN C BETWEEN C_MIN - ((C_MAX-C_MIN)*0.1)\n           AND C_MAX + ((C_MAX-C_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 14,
+        "y": 8
+      },
+      "id": 63,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Cueq' elemento,\nCAST(ROUND(Cueq,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Cueq BETWEEN Cueq_MIN AND Cueq_MAX THEN 'OK'\n WHEN Cueq BETWEEN Cueq_MIN - ((Cueq_MAX-Cueq_MIN)*0.1)\n              AND Cueq_MAX + ((Cueq_MAX-Cueq_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 15,
+        "y": 8
+      },
+      "id": 68,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Si' elemento,\nCAST(ROUND(Si,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Si BETWEEN Si_MIN AND Si_MAX THEN 'OK'\n WHEN Si BETWEEN Si_MIN - ((Si_MAX-Si_MIN)*0.1)\n            AND Si_MAX + ((Si_MAX-Si_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 16,
+        "y": 8
+      },
+      "id": 69,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'P' elemento,\nCAST(ROUND(P,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN P BETWEEN P_MIN AND P_MAX THEN 'OK'\n WHEN P BETWEEN P_MIN - ((P_MAX-P_MIN)*0.1)\n           AND P_MAX + ((P_MAX-P_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 17,
+        "y": 8
+      },
+      "id": 72,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'S' elemento,\nCAST(ROUND(S,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN S BETWEEN S_MIN AND S_MAX THEN 'OK'\n WHEN S BETWEEN S_MIN - ((S_MAX-S_MIN)*0.1)\n           AND S_MAX + ((S_MAX-S_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 18,
+        "y": 8
+      },
+      "id": 91,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\n  width: 100%;\n  height: 100%;\n  font-size: 24px;\n  font-weight: bold;\n  color: #d3d3d3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n\">\n  Mg (Magnésio)\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 5,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "custom.showPoints",
+                "value": "auto"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 20
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 6,
+        "y": 10
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "eixo_x"
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS (\r\n    SELECT\r\n        SEQUENCIA_ID,\r\n        CAST(Mg AS DECIMAL(10,5)) AS valor,\r\n        Mg_min,\r\n        Mg_max,\r\n        ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID DESC) AS rn\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'DISA'\r\n      AND Mg IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID ASC) AS eixo_x,\r\n    Mg_max AS UCL,\r\n    Mg_min AS LCL,\r\n    Mg_min + ((Mg_max - Mg_min) / 6.0) AS ALERTA_INF,\r\n    Mg_max - ((Mg_max - Mg_min) / 6.0) AS ALERTA_SUP,\r\n    CAST(ROUND(valor,3) AS DECIMAL(10,3)) AS valor\r\nFROM ultimas\r\nWHERE rn <= 10\r\nORDER BY eixo_x;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "eixo_x",
+            "mode": "outer"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 5,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "custom.showPoints",
+                "value": "auto"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 20
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 18,
+        "y": 10
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "eixo_x"
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS (\r\n    SELECT\r\n        SEQUENCIA_ID,\r\n        CAST(Mg AS DECIMAL(10,5)) AS valor,\r\n        Mg_min,\r\n        Mg_max,\r\n        ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID DESC) AS rn\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'BMD'\r\n      AND Mg IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID ASC) AS eixo_x,\r\n    Mg_max AS UCL,\r\n    Mg_min AS LCL,\r\n    Mg_min + ((Mg_max - Mg_min) / 6.0) AS ALERTA_INF,\r\n    Mg_max - ((Mg_max - Mg_min) / 6.0) AS ALERTA_SUP,\r\n    CAST(ROUND(valor,3) AS DECIMAL(10,3)) AS valor\r\nFROM ultimas\r\nWHERE rn <= 10\r\nORDER BY eixo_x;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "eixo_x",
+            "mode": "outer"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 0,
+        "y": 12
+      },
+      "id": 57,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Cu' elemento,\nCAST(ROUND(Cu,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Cu BETWEEN Cu_MIN AND Cu_MAX THEN 'OK'\n WHEN Cu BETWEEN Cu_MIN - ((Cu_MAX-Cu_MIN)*0.1)\n            AND Cu_MAX + ((Cu_MAX-Cu_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 1,
+        "y": 12
+      },
+      "id": 64,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Mn' elemento,\nCAST(ROUND(Mn,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Mn BETWEEN Mn_MIN AND Mn_MAX THEN 'OK'\n WHEN Mn BETWEEN Mn_MIN - ((Mn_MAX-Mn_MIN)*0.1)\n            AND Mn_MAX + ((Mn_MAX-Mn_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 2,
+        "y": 12
+      },
+      "id": 70,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Al' elemento,\nCAST(ROUND(Al,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Al BETWEEN Al_MIN AND Al_MAX THEN 'OK'\n WHEN Al BETWEEN Al_MIN - ((Al_MAX-Al_MIN)*0.1)\n            AND Al_MAX + ((Al_MAX-Al_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 3,
+        "y": 12
+      },
+      "id": 34,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^BRUKER / LECO$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 22,
+          "valueSize": 26
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CONVERT(varchar(10), DATA_HORA, 103) + ' ' +\r\n    LEFT(CONVERT(varchar(8), DATA_HORA, 108),5)\r\n    AS [BRUKER / LECO]\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'DISA'\r\n  AND [C COMB] IS NOT NULL\r\n  AND SEQUENCIA = (\r\n        SELECT MAX(SEQUENCIA)\r\n        FROM dbo.bi_espectro\r\n        WHERE MAQUINA_FORNADA = 'DISA'\r\n          AND [C COMB] IS NOT NULL\r\n  );",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 12,
+        "y": 12
+      },
+      "id": 67,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Cu' elemento,\nCAST(ROUND(Cu,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Cu BETWEEN Cu_MIN AND Cu_MAX THEN 'OK'\n WHEN Cu BETWEEN Cu_MIN - ((Cu_MAX-Cu_MIN)*0.1)\n            AND Cu_MAX + ((Cu_MAX-Cu_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 13,
+        "y": 12
+      },
+      "id": 71,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Mn' elemento,\nCAST(ROUND(Mn,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Mn BETWEEN Mn_MIN AND Mn_MAX THEN 'OK'\n WHEN Mn BETWEEN Mn_MIN - ((Mn_MAX-Mn_MIN)*0.1)\n            AND Mn_MAX + ((Mn_MAX-Mn_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 1,
+        "x": 14,
+        "y": 12
+      },
+      "id": 60,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'Al' elemento,\nCAST(ROUND(Al,3) AS DECIMAL(10,3)) valor,\n\nCASE\n WHEN Al BETWEEN Al_MIN AND Al_MAX THEN 'OK'\n WHEN Al BETWEEN Al_MIN - ((Al_MAX-Al_MIN)*0.1)\n            AND Al_MAX + ((Al_MAX-Al_MIN)*0.1)\n THEN 'LIMITE'\n ELSE 'FORA'\nEND status\n\nFROM ultima",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 12
+      },
+      "id": 41,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^BRUKER / LECO$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 22,
+          "valueSize": 26
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    CONVERT(varchar(10), DATA_HORA, 103) + ' ' +\r\n    LEFT(CONVERT(varchar(8), DATA_HORA, 108),5)\r\n    AS [BRUKER / LECO]\r\nFROM dbo.bi_espectro\r\nWHERE MAQUINA_FORNADA = 'BMD'\r\n  AND [C COMB] IS NOT NULL\r\n  AND SEQUENCIA = (\r\n        SELECT MAX(SEQUENCIA)\r\n        FROM dbo.bi_espectro\r\n        WHERE MAQUINA_FORNADA = 'BMD'\r\n          AND [C COMB] IS NOT NULL\r\n  );",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 3,
+        "y": 14
+      },
+      "id": 58,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n    ORDER BY DATA_HORA DESC\n),\n\nccomb_valor AS (\n    SELECT TOP 1 [C COMB]\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'DISA'\n      AND [C COMB] IS NOT NULL\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'C' AS elemento,\n\nCAST(ROUND(\n    COALESCE(u.[C COMB], c.[C COMB])\n,3) AS DECIMAL(10,3)) AS valor,\n\nCASE\n WHEN COALESCE(u.[C COMB], c.[C COMB]) BETWEEN u.C_MIN AND u.C_MAX THEN 'OK'\n\n WHEN COALESCE(u.[C COMB], c.[C COMB]) \n      BETWEEN u.C_MIN - ((u.C_MAX-u.C_MIN)*0.1)\n          AND u.C_MAX + ((u.C_MAX-u.C_MIN)*0.1)\n THEN 'LIMITE'\n\n ELSE 'FORA'\nEND AS status\n\nFROM ultima u\nCROSS JOIN ccomb_valor c",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "FORA": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "⬤"
+                },
+                "LIMITE": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "⬤"
+                },
+                "OK": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "⬤"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 14
+      },
+      "id": 74,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 28
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultima AS (\n    SELECT TOP 1 *\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n    ORDER BY DATA_HORA DESC\n),\n\nccomb_valor AS (\n    SELECT TOP 1 [C COMB]\n    FROM dbo.bi_espectro\n    WHERE MAQUINA_FORNADA = 'BMD'\n      AND [C COMB] IS NOT NULL\n    ORDER BY DATA_HORA DESC\n)\n\nSELECT \n'C' AS elemento,\n\nCAST(ROUND(\n    COALESCE(u.[C COMB], c.[C COMB])\n,3) AS DECIMAL(10,3)) AS valor,\n\nCASE\n WHEN COALESCE(u.[C COMB], c.[C COMB]) BETWEEN u.C_MIN AND u.C_MAX THEN 'OK'\n\n WHEN COALESCE(u.[C COMB], c.[C COMB]) \n      BETWEEN u.C_MIN - ((u.C_MAX-u.C_MIN)*0.1)\n          AND u.C_MAX + ((u.C_MAX-u.C_MIN)*0.1)\n THEN 'LIMITE'\n\n ELSE 'FORA'\nEND AS status\n\nFROM ultima u\nCROSS JOIN ccomb_valor c",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1e-06
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 16
+      },
+      "id": 94,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Mg, Mg_MIN, Mg_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Mg IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'DISA'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Mg AS mg_base,\r\n        ((Mg_MIN + Mg_MAX) / 2.0) AS mg_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((mg_alvo - mg_base) * 1000.0)\r\n            / (8.0 * 0.8)\r\n        ) / 100.0 AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN ABS(delta) < 0.15 THEN 0\r\n        ELSE ROUND(delta * 10, 0) / 10.0\r\n    END AS ajuste_kg\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Fe Si",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1e-06
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 2,
+        "y": 16
+      },
+      "id": 104,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Si, Si_MIN, Si_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Si IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'DISA'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Si AS si_base,\r\n        ((Si_MIN + Si_MAX) / 2.0) AS si_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((si_alvo - si_base) * 1000.0)\r\n            / (75.0 * 70.0)\r\n        ) AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN delta <= 0 THEN 0  -- não corrige para baixo\r\n        WHEN ABS(delta) < 0.15 THEN 0\r\n        ELSE ROUND(delta * 10, 0) / 10.0\r\n    END AS ajuste_kg\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "delta_kg": "Fe Si"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1e-06
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 4,
+        "y": 16
+      },
+      "id": 105,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Cu$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        CUEQ, CUEQ_MIN, CUEQ_MAX, MATERIAL\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        CUEQ IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'DISA'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        CUEQ AS cueq_base,\r\n        ((CUEQ_MIN + CUEQ_MAX) / 2.0) AS cueq_alvo,\r\n        MATERIAL\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        MATERIAL,\r\n        CASE \r\n            WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN NULL\r\n            ELSE (\r\n                ((cueq_alvo - cueq_base) * 1000.0)\r\n                / 95.0\r\n            )\r\n        END AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    -- 🔧 Quantidade (kg)\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN ABS(delta) < 0.2 THEN '0'\r\n        ELSE CAST(ROUND(delta * 10, 0) / 10.0 AS VARCHAR)\r\n    END AS delta_kg,\r\n\r\n    -- 🎯 Ação\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN delta <= 0 THEN 'MANTER'\r\n        WHEN ABS(delta) < 0.2 THEN 'MANTER'\r\n        ELSE 'ADICIONAR'\r\n    END AS acao\r\n\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "delta_kg": "Cu"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1e-06
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 12,
+        "y": 16
+      },
+      "id": 97,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Fe Si Mg$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Mg, Mg_MIN, Mg_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Mg IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'BMD'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Mg AS mg_base,\r\n        ((Mg_MIN + Mg_MAX) / 2.0) AS mg_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((mg_alvo - mg_base) * 1000.0)\r\n            / (8.0 * 0.8)\r\n        ) / 100.0 AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN ABS(delta) < 0.15 THEN 0\r\n        ELSE ROUND(delta * 10, 0) / 10.0\r\n    END AS ajuste_kg\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Fe Si",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1e-06
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 14,
+        "y": 16
+      },
+      "id": 100,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Si, Si_MIN, Si_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Si IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'BMD'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Si AS si_base,\r\n        ((Si_MIN + Si_MAX) / 2.0) AS si_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((si_alvo - si_base) * 1000.0)\r\n            / (75.0 * 70.0)\r\n        ) AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN delta <= 0 THEN 0  -- não corrige para baixo\r\n        WHEN ABS(delta) < 0.15 THEN 0\r\n        ELSE ROUND(delta * 10, 0) / 10.0\r\n    END AS ajuste_kg\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "delta_kg": "Fe Si"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-yellow",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1e-06
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 16,
+        "y": 16
+      },
+      "id": 99,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Cu$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        CUEQ, CUEQ_MIN, CUEQ_MAX, MATERIAL\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        CUEQ IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'BMD'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        CUEQ AS cueq_base,\r\n        ((CUEQ_MIN + CUEQ_MAX) / 2.0) AS cueq_alvo,\r\n        MATERIAL\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        MATERIAL,\r\n        CASE \r\n            WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN NULL\r\n            ELSE (\r\n                ((cueq_alvo - cueq_base) * 1000.0)\r\n                / 95.0\r\n            )\r\n        END AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    -- 🔧 Quantidade (kg)\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN ABS(delta) < 0.2 THEN '0'\r\n        ELSE CAST(ROUND(delta * 10, 0) / 10.0 AS VARCHAR)\r\n    END AS delta_kg,\r\n\r\n    -- 🎯 Ação\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN delta <= 0 THEN 'MANTER'\r\n        WHEN ABS(delta) < 0.2 THEN 'MANTER'\r\n        ELSE 'ADICIONAR'\r\n    END AS acao\r\n\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "delta_kg": "Cu"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 6,
+        "y": 19
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^value$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS\r\n(\r\n    SELECT TOP 10\r\n        DATA_HORA,\r\n        CAST(PANELA AS varchar(10))        AS panela,\r\n        CAST(ROUND(Mg,3) AS decimal(10,3)) AS value\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'DISA'\r\n      AND Mg IS NOT NULL\r\n    ORDER BY DATA_HORA DESC\r\n)\r\n\r\nSELECT\r\n    value,                                  -- Mg primeiro (valor do gráfico)\r\n    panela,                                 -- legenda\r\n    CONVERT(varchar(5), DATA_HORA,108) AS hora\r\nFROM ultimas\r\nORDER BY DATA_HORA ASC;                     -- AQUI está o segredo",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "eixo_x": true,
+              "legenda": false,
+              "ordem": true,
+              "value": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "orderByMode": "manual",
+            "renameByName": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 3,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 18,
+        "y": 19
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^value$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS\r\n(\r\n    SELECT TOP 10\r\n        DATA_HORA,\r\n        CAST(PANELA AS varchar(10))        AS panela,\r\n        CAST(ROUND(Mg,3) AS decimal(10,3)) AS value\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'BMD'\r\n      AND Mg IS NOT NULL\r\n    ORDER BY DATA_HORA DESC\r\n)\r\n\r\nSELECT\r\n    value,                                  -- Mg primeiro (valor do gráfico)\r\n    panela,                                 -- legenda\r\n    CONVERT(varchar(5), DATA_HORA,108) AS hora\r\nFROM ultimas\r\nORDER BY DATA_HORA ASC;                     -- AQUI está o segredo",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 2,
+        "x": 0,
+        "y": 20
+      },
+      "id": 101,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^acao$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 24
+        },
+        "textMode": "value",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Mg, Mg_MIN, Mg_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Mg IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'DISA'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Mg AS mg_base,\r\n        ((Mg_MIN + Mg_MAX) / 2.0) AS mg_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((mg_alvo - mg_base) * 1000.0)\r\n            / (8.0 * 0.8)\r\n        ) / 100.0 AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN ABS(delta) < 0.15 THEN 'MANTER'\r\n        WHEN delta > 0 THEN 'ADICIONAR'\r\n        ELSE 'REDUZIR'\r\n    END AS acao\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 2,
+        "x": 2,
+        "y": 20
+      },
+      "id": 102,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^acao$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 24
+        },
+        "textMode": "value",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Si, Si_MIN, Si_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Si IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'DISA'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Si AS si_base,\r\n        ((Si_MIN + Si_MAX) / 2.0) AS si_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((si_alvo - si_base) * 1000.0)\r\n            / (75.0 * 70.0)\r\n        ) AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN ABS(delta) < 0.2 THEN 'MANTER'\r\n        WHEN delta > 0 THEN 'ADICIONAR'\r\n        ELSE 'MANTER'   -- não existe redução prática\r\n    END AS acao\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 2,
+        "x": 4,
+        "y": 20
+      },
+      "id": 103,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^acao$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 24
+        },
+        "textMode": "value",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        CUEQ, CUEQ_MIN, CUEQ_MAX, MATERIAL\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        CUEQ IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'DISA'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        CUEQ AS cueq_base,\r\n        ((CUEQ_MIN + CUEQ_MAX) / 2.0) AS cueq_alvo,\r\n        MATERIAL\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        MATERIAL,\r\n        CASE \r\n            WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN NULL\r\n            ELSE ((cueq_alvo - cueq_base) * 1000.0) / 95.0\r\n        END AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    -- 🔧 Quantidade\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN ABS(delta) < 0.2 THEN '0'\r\n        ELSE CAST(ROUND(delta * 10, 0) / 10.0 AS VARCHAR)\r\n    END AS delta_kg,\r\n\r\n    -- 🎯 Ação CORRIGIDA\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN ABS(delta) < 0.2 THEN 'MANTER'\r\n        WHEN delta > 0 THEN 'ADICIONAR'\r\n        WHEN delta < 0 THEN 'REDUZIR'\r\n    END AS acao\r\n\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 2,
+        "x": 12,
+        "y": 20
+      },
+      "id": 106,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^acao$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 24
+        },
+        "textMode": "value",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Mg, Mg_MIN, Mg_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Mg IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'BMD'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Mg AS mg_base,\r\n        ((Mg_MIN + Mg_MAX) / 2.0) AS mg_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((mg_alvo - mg_base) * 1000.0)\r\n            / (8.0 * 0.8)\r\n        ) / 100.0 AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN ABS(delta) < 0.15 THEN 'MANTER'\r\n        WHEN delta > 0 THEN 'ADICIONAR'\r\n        ELSE 'REDUZIR'\r\n    END AS acao\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 2,
+        "x": 14,
+        "y": 20
+      },
+      "id": 107,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^acao$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 24
+        },
+        "textMode": "value",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        Si, Si_MIN, Si_MAX\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        Si IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'BMD'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        Si AS si_base,\r\n        ((Si_MIN + Si_MAX) / 2.0) AS si_alvo\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        (\r\n            ((si_alvo - si_base) * 1000.0)\r\n            / (75.0 * 70.0)\r\n        ) AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    CASE \r\n        WHEN ABS(delta) < 0.2 THEN 'MANTER'\r\n        WHEN delta > 0 THEN 'ADICIONAR'\r\n        ELSE 'MANTER'   -- não existe redução prática\r\n    END AS acao\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 2,
+        "x": 16,
+        "y": 20
+      },
+      "id": 108,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^acao$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 24
+        },
+        "textMode": "value",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH base AS (\r\n    SELECT TOP 1\r\n        CUEQ, CUEQ_MIN, CUEQ_MAX, MATERIAL\r\n    FROM dbo.bi_espectro\r\n    WHERE \r\n        CUEQ IS NOT NULL\r\n        AND MAQUINA_FORNADA = 'BMD'\r\n    ORDER BY SEQUENCIA_DATA DESC\r\n),\r\n\r\ncalc AS (\r\n    SELECT\r\n        CUEQ AS cueq_base,\r\n        ((CUEQ_MIN + CUEQ_MAX) / 2.0) AS cueq_alvo,\r\n        MATERIAL\r\n    FROM base\r\n),\r\n\r\ndelta_calc AS (\r\n    SELECT\r\n        MATERIAL,\r\n        CASE \r\n            WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN NULL\r\n            ELSE ((cueq_alvo - cueq_base) * 1000.0) / 95.0\r\n        END AS delta\r\n    FROM calc\r\n)\r\n\r\nSELECT\r\n    -- 🔧 Quantidade\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN ABS(delta) < 0.2 THEN '0'\r\n        ELSE CAST(ROUND(delta * 10, 0) / 10.0 AS VARCHAR)\r\n    END AS delta_kg,\r\n\r\n    -- 🎯 Ação CORRIGIDA\r\n    CASE \r\n        WHEN MATERIAL IN ('FFB30', 'FFB30 ESP') THEN 'FERRÍTICO'\r\n        WHEN ABS(delta) < 0.2 THEN 'MANTER'\r\n        WHEN delta > 0 THEN 'ADICIONAR'\r\n        WHEN delta < 0 THEN 'REDUZIR'\r\n    END AS acao\r\n\r\nFROM delta_calc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "ajuste_kg": "Fe Si Mg"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 0,
+        "y": 21
+      },
+      "id": 90,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\n  width: 100%;\n  height: 100%;\n  font-size: 24px;\n  font-weight: bold;\n  color: #d3d3d3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n\">\n  Cueq (Cobre Equivalente)\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 6,
+        "y": 21
+      },
+      "id": 89,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\n  width: 100%;\n  height: 100%;\n  font-size: 24px;\n  font-weight: bold;\n  color: #d3d3d3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n\">\n  Si (Silício)\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 12,
+        "y": 21
+      },
+      "id": 93,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\n  width: 100%;\n  height: 100%;\n  font-size: 24px;\n  font-weight: bold;\n  color: #d3d3d3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n\">\n  Cueq (Cobre Equivalente)\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 18,
+        "y": 21
+      },
+      "id": 92,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\n  width: 100%;\n  height: 100%;\n  font-size: 24px;\n  font-weight: bold;\n  color: #d3d3d3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n\">\n  Si (Silício)\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.4.0",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 5,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "custom.showPoints",
+                "value": "auto"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 20
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 23
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "eixo_x"
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS (\r\n    SELECT\r\n        SEQUENCIA_ID,\r\n        CAST(Cueq AS DECIMAL(10,5)) AS valor,\r\n        Cueq_min,\r\n        Cueq_max,\r\n        ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID DESC) AS rn\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'DISA'\r\n      AND Cueq IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID ASC) AS eixo_x,\r\n    Cueq_max AS UCL,\r\n    Cueq_min AS LCL,\r\n    Cueq_min + ((Cueq_max - Cueq_min) / 6.0) AS ALERTA_INF,\r\n    Cueq_max - ((Cueq_max - Cueq_min) / 6.0) AS ALERTA_SUP,\r\n    CAST(ROUND(valor,3) AS DECIMAL(10,3)) AS valor\r\nFROM ultimas\r\nWHERE rn <= 10\r\nORDER BY eixo_x;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "eixo_x",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "status": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 5,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "auto"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 20
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 7
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 6,
+        "y": 23
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "eixo_x"
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS (\r\n    SELECT\r\n        SEQUENCIA_ID,\r\n        CAST(Si AS DECIMAL(10,5)) AS valor,\r\n        Si_min,\r\n        Si_max,\r\n        ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID DESC) AS rn\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'DISA'\r\n      AND Si IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID ASC) AS eixo_x,\r\n    Si_max AS UCL,\r\n    Si_min AS LCL,\r\n    Si_min + ((Si_max - Si_min) / 6.0) AS ALERTA_INF,\r\n    Si_max - ((Si_max - Si_min) / 6.0) AS ALERTA_SUP,\r\n    CAST(ROUND(valor,3) AS DECIMAL(10,3)) AS valor\r\nFROM ultimas\r\nWHERE rn <= 10\r\nORDER BY eixo_x;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "eixo_x",
+            "mode": "outer"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 5,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "custom.showPoints",
+                "value": "auto"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 20
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 12,
+        "y": 23
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "eixo_x"
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS (\r\n    SELECT\r\n        SEQUENCIA_ID,\r\n        CAST(Cueq AS DECIMAL(10,5)) AS valor,\r\n        Cueq_min,\r\n        Cueq_max,\r\n        ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID DESC) AS rn\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'BMD'\r\n      AND Cueq IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID ASC) AS eixo_x,\r\n    Cueq_max AS UCL,\r\n    Cueq_min AS LCL,\r\n    Cueq_min + ((Cueq_max - Cueq_min) / 6.0) AS ALERTA_INF,\r\n    Cueq_max - ((Cueq_max - Cueq_min) / 6.0) AS ALERTA_SUP,\r\n    CAST(ROUND(valor,3) AS DECIMAL(10,3)) AS valor\r\nFROM ultimas\r\nWHERE rn <= 10\r\nORDER BY eixo_x;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "eixo_x",
+            "mode": "outer"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 5,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LCL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ALERTA_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_INF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Limite_SUP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valor"
+            },
+            "properties": [
+              {
+                "id": "custom.showPoints",
+                "value": "auto"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 20
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 18,
+        "y": 23
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "eixo_x"
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS (\r\n    SELECT\r\n        SEQUENCIA_ID,\r\n        CAST(Si AS DECIMAL(10,5)) AS valor,\r\n        Si_min,\r\n        Si_max,\r\n        ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID DESC) AS rn\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'BMD'\r\n      AND Si IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    ROW_NUMBER() OVER (ORDER BY SEQUENCIA_ID ASC) AS eixo_x,\r\n    Si_max AS UCL,\r\n    Si_min AS LCL,\r\n    Si_min + ((Si_max - Si_min) / 6.0) AS ALERTA_INF,\r\n    Si_max - ((Si_max - Si_min) / 6.0) AS ALERTA_SUP,\r\n    CAST(ROUND(valor,3) AS DECIMAL(10,3)) AS valor\r\nFROM ultimas\r\nWHERE rn <= 10\r\nORDER BY eixo_x;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "eixo_x",
+            "mode": "outer"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 0,
+        "y": 32
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^value$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS\r\n(\r\n    SELECT TOP 10\r\n        DATA_HORA,\r\n        CAST(PANELA AS varchar(10))        AS panela,\r\n        CAST(ROUND(Cueq,3) AS decimal(10,3)) AS value\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'DISA'\r\n      AND Cueq IS NOT NULL\r\n    ORDER BY DATA_HORA DESC\r\n)\r\n\r\nSELECT\r\n    value,                                  -- Mg primeiro (valor do gráfico)\r\n    panela,                                 -- legenda\r\n    CONVERT(varchar(5), DATA_HORA,108) AS hora\r\nFROM ultimas\r\nORDER BY DATA_HORA ASC;                     -- AQUI está o segredo",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 6,
+        "y": 32
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^value$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS\r\n(\r\n    SELECT TOP 10\r\n        DATA_HORA,\r\n        CAST(PANELA AS varchar(10))        AS panela,\r\n        CAST(ROUND(Si,3) AS decimal(10,3)) AS value\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'DISA'\r\n      AND Si IS NOT NULL\r\n    ORDER BY DATA_HORA DESC\r\n)\r\n\r\nSELECT\r\n    value,                                  -- Mg primeiro (valor do gráfico)\r\n    panela,                                 -- legenda\r\n    CONVERT(varchar(5), DATA_HORA,108) AS hora\r\nFROM ultimas\r\nORDER BY DATA_HORA ASC;                     -- AQUI está o segredo",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 12,
+        "y": 32
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^value$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS\r\n(\r\n    SELECT TOP 10\r\n        DATA_HORA,\r\n        CAST(PANELA AS varchar(10))        AS panela,\r\n        CAST(ROUND(Cueq,3) AS decimal(10,3)) AS value\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'BMD'\r\n      AND Cueq IS NOT NULL\r\n    ORDER BY DATA_HORA DESC\r\n)\r\n\r\nSELECT\r\n    value,                                  -- Mg primeiro (valor do gráfico)\r\n    panela,                                 -- legenda\r\n    CONVERT(varchar(5), DATA_HORA,108) AS hora\r\nFROM ultimas\r\nORDER BY DATA_HORA ASC;                     -- AQUI está o segredo",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "dfdqlmwiboh6oc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 18,
+        "y": 32
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^value$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 18,
+          "valueSize": 18
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "dataset": "kaitronn_fagor",
+          "datasource": {
+            "type": "mssql",
+            "uid": "dfdqlmwiboh6oc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ultimas AS\r\n(\r\n    SELECT TOP 10\r\n        DATA_HORA,\r\n        CAST(PANELA AS varchar(10))        AS panela,\r\n        CAST(ROUND(Si,3) AS decimal(10,3)) AS value\r\n    FROM dbo.bi_espectro\r\n    WHERE MAQUINA_FORNADA = 'BMD'\r\n      AND Si IS NOT NULL\r\n    ORDER BY DATA_HORA DESC\r\n)\r\n\r\nSELECT\r\n    value,                                  -- Mg primeiro (valor do gráfico)\r\n    panela,                                 -- legenda\r\n    CONVERT(varchar(5), DATA_HORA,108) AS hora\r\nFROM ultimas\r\nORDER BY DATA_HORA ASC;                     -- AQUI está o segredo",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    }
+  ],
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "America/Sao_Paulo",
+  "title": "Composição Química - Final Copy",
+  "uid": "fomgh4g",
+  "version": 48,
+  "weekStart": ""
+}
